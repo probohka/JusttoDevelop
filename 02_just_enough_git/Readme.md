@@ -94,7 +94,7 @@ git add fileName
 Fill in comments
 
 ### 3. pull
-Get latest version of main branch.
+Get latest version of main.
 See at pull command
 
 ```bash
