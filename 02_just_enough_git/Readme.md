@@ -96,7 +96,7 @@ Fill in comments
 git commit -m "some comments"
 ```
 ### 3. pull
-Get latest version of main branch.
+Get latest version of main.
 See at pull command
 
 ```bash
