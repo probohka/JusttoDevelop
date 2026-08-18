@@ -92,7 +92,9 @@ git add fileName
 ```
 ### 2. commit
 Fill in comments
-
+```bash
+git commit -m "some comments"
+```
 ### 3. pull
 Get latest version of main branch.
 See at pull command
