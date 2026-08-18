@@ -1,13 +1,16 @@
+# General tags
 
 ## status
 To check if the current local version is equal with current on the git
-
+```bash
+git status
+```
 
 ## pull
 Download the newest code from your remote server (like GitHub):
-~~~
+```bash
 git pull
-~~~
+```
 The git pull command is actually a two-in-one shortcut. It automatically runs a fetch followed by a merge:
 git pull = git fetch (download data) + git merge (force it into your local working files)
 
@@ -17,10 +20,9 @@ You use fetch command and see what your teammates worked on before deciding to m
 
 The git fetch command downloads the latest history, branches, and tags from your remote repository (like GitHub) to your local machine, without changing any of your local files.
 
-```
+```bash
 git fetch
 ```
-
 
 ## merge
 Run merge for find differences in files
@@ -70,8 +72,17 @@ If you have already staged files and want to wipe everything out completely, you
 git restore --staged .
 ```
 
+## Shows your local branches, with extra detail
+```bash
+git branch -vv
+```
 
-## Send changes to the server
+## Lists all branch names, local and remote, but no tracking info or commit details
+```bash
+git branch -a
+```
+
+# Send changes to the server
 Save changes if not! Because GIT can add and push changes that only saved on the disk (ctrl+s on EDI or autosave).
 
 ### 1. add - Stage changes
