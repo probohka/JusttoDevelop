@@ -63,3 +63,9 @@ SELECT * FROM test.newtable;
 ```bash
 docker run -d -p 5433:5432 --name postgres_container postgres_image
 ```
+
+Чтобы запустить контейнер и сразу подтянуть все файлы(sql, csv) из текущей дирректории нужно выполнить команду:
+
+```bash
+docker run -d --name my_postgres_db -p 5433:5432 -e POSTGRES_PASSWORD=secret123 -v "${PWD}/pg-init.d:/docker-entrypoint-initdb.d" postgres_image:1.0
+```
