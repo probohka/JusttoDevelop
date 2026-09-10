@@ -121,11 +121,17 @@ Standard input and output are often abbreviated as `stdin` and `stdout`. There i
 
 ## Basic Commands
 
-### 'code .'
-Run the new envorinment in VS for current folder
+### 'code'
+
+Open project in VS for current folder. If project already open in VS nothig happing.
 
 ```bash
 code .
+```
+Run the new environment in VS Code for the current folder. This will open a new VS Code window with the project you specified.
+
+```bash
+code -n project_Name
 ```
 ### cat
 
