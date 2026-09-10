@@ -128,11 +128,18 @@ Open project in VS for current folder. If project already open in VS nothig happ
 ```bash
 code .
 ```
-Run the new environment in VS Code for the current folder. This will open a new VS Code window with the project you specified.
+Run the new environment in VS Code for the current folder. This will open a new VS Code window with the project you specified. The current window with Project, will stay open.
 
 ```bash
-code -n project_Name
+code -n path/project_Name
 ```
+Or if you are already in the project folder, use this command to open it in a new window. The current window with Project, will stay open.
+
+```bash
+code -n .
+```
+
+
 ### cat
 
 The `cat` program is one of the easiest in Unix to understand; it simply outputs the contents of one or more files or another source of input.
