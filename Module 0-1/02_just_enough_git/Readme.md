@@ -13,7 +13,6 @@ git status
 ```
 
 ## pull
-test info
 Download the newest code from your remote server (like GitHub):
 ```bash
 git pull
