@@ -5,6 +5,7 @@ If you want download new project from Github to you local machine, use git clone
 ```bash
 git clone project_link_fromGitHub
 ```
+test
 
 ## status
 To check if the current local version is equal with current on the git
