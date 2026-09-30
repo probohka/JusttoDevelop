@@ -4,6 +4,7 @@ DuckDB is an in-process SQL [**OLAP**](https://motherduck.com/learn-more/what-i
 
 Installation: https://duckdb.org/docs/installation/.
 
+## How to install duckDB
 On MacOS:
 
 ```bash
@@ -16,10 +17,29 @@ Or on Windows:
 winget install DuckDB.cli
 ```
 
+
+To run Duckdb in cli:
+```bash
+duckdb
+```
+
+To quit from duckdb use 'Ctrl+D'
+
+
+## Most common commands in duckDB:
+
+Be attention all commands should be ended with ';'
+
+We can use CLI for create table:
+```bash
+CREATE TABLE phones AS SELECT 15 AS version, 'iPhone' AS model;
+```
+Be attantion, in this case table will be create only in current session!
+
+
 We can use CLI to query data:
 
 ```bash
-D CREATE TABLE phones AS SELECT 15 AS version, 'iPhone' AS model;
 FROM phones;
 ```
 
@@ -27,22 +47,48 @@ If we create table and restart duckdb, the data will be gone.
 
 We can use persistence with DuckDB. The file can have any extension, but common choices are `.db`, `.duckdb`, or `.ddb`. If no database exists at the specified path, DuckDB will create one.
 
-We can create a database to persist. Make sure you are in right directory:
+We can create a database to persist. Make sure you are in right directory.
 
+In terminal:
 ```bash
-cd 02_getting_started_with_databases/07_duckdb
+cd your-folder-name
 
-duckdb data/mydb.db
+duckdb mydb.db
 
 D SHOW DATABASES;
 ```
 
-Create table in database:
+
+Or you create Database in duckdb directly:
+```bash
+ATTACH DATABASE 'your-fldr-name/mydb.db' AS mydb;
+```
+If data base file 'mydb.db' doesn't exists DuckDB will create it.
+
+This way you can view the list of databases
+
+```bash
+show databases;
+```
+
+Create table in certain database:
 
 ```bash
 D CREATE TABLE mydb.phones AS SELECT 15 AS version, 'iPhone' AS model;
 FROM mydb.phones;
 ```
+
+OR you can activate (or select) the current database first, and the create table in it:
+
+```bach
+use mydb;
+```
+
+This way you view the list of all tables in current DB
+```bash
+show tables;
+```
+
 
 You can also launch DuckDB with a database in read-only mode to avoid modifying the database:
 
@@ -98,9 +144,51 @@ We can use the `.mode` command to change the appearance of tables returned in 
 
 If we are dealing with long nested JSON, we can change the mode to `line` or `JSON` to have a better view of data.
 
+By default, DuckDB CLI uses `.mode duckbox`, which displays results as a table with columns and rows:
+
+```bash
+.mode duckbox
+SELECT * FROM 'data/namesfile.json';
+```
+
+```
+┌───────┬────────────────┬───────┬────────────────────────────────────────────────────────────┐
+│  ID   │      Name      │  Age  │                            Contact                            │
+│ int64 │    varchar     │ int64 │           struct(email varchar, phone varchar)                │
+├───────┼────────────────┼───────┼────────────────────────────────────────────────────────────┤
+│     1 │ John Doe       │    30 │ {'Email': john.doe@example.com, 'Phone': 123-456-7890}        │
+│     2 │ Jane Smith     │    25 │ {'Email': jane.smith@example.com, 'Phone': 098-765-4321}      │
+│     3 │ Bob Johnson    │    28 │ {'Email': bob.johnson@example.com, 'Phone': 555-555-5555}     │
+│     4 │ Alice Williams │    22 │ {'Email': alice.williams@example.com, 'Phone': 666-666-6666}  │
+│     5 │ Charlie Brown  │    33 │ {'Email': charlie.brown@example.com, 'Phone': 777-777-7777}   │
+└───────┴────────────────┴───────┴────────────────────────────────────────────────────────────┘
+```
+
+This works fine for narrow tables, but with wide or deeply nested columns (like `Contact` here), the table gets hard to read since each row is squeezed into a single line.
+
+`.mode line` instead prints one column per line, per record, which is much easier to read for this kind of data:
+
 ```bash
 .mode line
 SELECT * FROM 'data/namesfile.json';
+```
+
+```
+     ID = 1
+   Name = John Doe
+    Age = 30
+Contact = {'Email': john.doe@example.com, 'Phone': 123-456-7890}
+
+     ID = 2
+   Name = Jane Smith
+    Age = 25
+Contact = {'Email': jane.smith@example.com, 'Phone': 098-765-4321}
+```
+
+To go back to the default table view, switch back with:
+
+```bash
+.mode duckbox
 ```
 
 We can output the result to a Markdown file, by setting the display mode to Markdown with `.mode markdown`.
@@ -110,6 +198,7 @@ Combine this with the `.output` or `.once` command to write the result direc
 ```bash
 .mode markdown
 .output myfile.md
+from tablename;
 ```
 
 ## Running commands and exiting

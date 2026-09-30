@@ -197,6 +197,17 @@ The `echo` command prints its arguments to the standard output:
 echo Hello world!
 ```
 
+### Using a relative path in the CLI 
+For example your current folder is:
+C:\superMain\main\child1\folder\
+
+you want use file or files placed on different places, you have to use relative path.
+
+For example for file1 placed in: 
+C:\superMain\main\file1
+..\..\tesfile
+
+
 ### cd
 
 The current working directory is the directory that a process (such as the shell) is currently in.
