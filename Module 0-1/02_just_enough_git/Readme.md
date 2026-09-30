@@ -89,6 +89,11 @@ git branch -vv
 git branch -a
 ```
 
+## Delete list of branches
+```bash
+git branch -d Module3.4 Module3.5 Modules3.1-3.2 
+```
+
 # Send changes to the server
 Save changes if not! Because GIT can add and push changes that only saved on the disk (ctrl+s on EDI or autosave).
 
